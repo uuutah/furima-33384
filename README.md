@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| password           | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
+| birth_year         | date   | null: false |
+| birth_month        | date   | null: false |
+| birth_day          | date   | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :comments
+- has_many :purchases
+- has_many :items
 
-* Ruby version
+##  itemsテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| image              |         |             |
+| title              | string  | null: false |
+| description        | text    | null: false |
+| category           | string  | null: false |
+| status             |         |             |
+| shopping_charges   |         |             |
+| shopping_area      |         |             |
+| days_to_ship       |         |             |
+| price              | integer | null: false |
+| user               |         |             |
 
-* System dependencies
+### Association
+- belongs_to :purchases
+- belongs_to ;users
+- has_many :comments
 
-* Configuration
+##  purchasesテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| card_number        | integer | null: false |
+| expiration_month   | integer | null: false |
+| expiration_day     | integer | null: false |
+| security_code      | integer | null: false |
+| postal_code        | integer | null: false |
+| prefectures        |         |             |
+| city               | string  | null: false |
+| address            | string  | null: false |
+| building_name      | string  |             |
+| phone_number       | integer | null: false |
 
-* Database creation
+### Association
+- belongs_to :items
+- belongs_to :users
 
-* Database initialization
+##  commentsテーブル
+| Column             | Type    | Options     |
+| ------------------ | ------  | ----------- |
+| text               | text    | null: false |
+| user               |         |             |
+| item               |         |             |
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :items
+- belongs_to :users
