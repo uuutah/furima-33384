@@ -13,7 +13,7 @@
 | birthday                     | date   | null: false               |
 
 ### Association
-- has_many :purchase_management
+- has_many :purchase_managements
 - has_many :items
 
 ##  itemsテーブル
