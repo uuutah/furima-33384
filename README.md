@@ -10,7 +10,7 @@
 | first_name                   | string | null: false               |
 | last_name_kana               | string | null: false               |
 | first_name_kana              | string | null: false               |
-| birthday                     | date   | null: false               |
+| _date                   | date   | null: false               |
 
 ### Association
 - has_many :purchase_managements
