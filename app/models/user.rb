@@ -5,7 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: '英数字のみが使えます' }
-  validates :nickname, presence: true
+
+  with_options presence: true do
+    validates :nickname
+    validates :birth_date
+  end
 
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
     validates :first_name
@@ -17,5 +21,4 @@ class User < ApplicationRecord
     validates :last_name_kana
   end
 
-  validates :birth_date, presence: true
 end
