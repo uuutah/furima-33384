@@ -1,12 +1,16 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:destroy]
+ 
   def index
   end
 
-  #def new
-  #end
+  def new
+    @item = Item.new
+  end
 
-  #def create
-  #end
+  def create
+    @item = Item.new(items_params)
+  end
 
   private
 

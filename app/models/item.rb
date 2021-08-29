@@ -3,11 +3,14 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :status, :shopping_charges, :shopping_area, :days_to_ship
+  belongs_to :category
+  belongs_to :status
+  belongs_to :shopping_charges
+  belongs_to :shopping_area
+  belongs_to :days_to_ship
 
-  with_options presence: true, message: "can't be blank" do
-    validates :title, :image, :description, :category, :days_to_ship, :shopping_charges, :shopping_area,
-              :status, :price
+  with_options presence: true do
+    validates :title, :image, :description, :category, :days_to_ship, :shopping_charges, :shopping_area, :status, :price
   end
 
   with_options numericality: { other_than: 1 , message: "can't be blank"} do
