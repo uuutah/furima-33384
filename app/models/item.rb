@@ -9,14 +9,16 @@ class Item < ApplicationRecord
   belongs_to :shopping_area
   belongs_to :days_to_ship
 
+  validates :shopping_area_id, numericality: { other_than: 0 , message: "can't be blank"}
+
   with_options presence: true do
-    validates :title, :image, :description, :category, :days_to_ship, :shopping_charges, :shopping_area, :status, :price
+    validates :title, :image, :description, :category_id, :days_to_ship_id, :shopping_charges_id, :shopping_area_id, :status_id, :price
   end
 
   with_options numericality: { other_than: 1 , message: "can't be blank"} do
-    validates :category, :days_to_ship, :shopping_charges, :shopping_area, :status
+    validates :category_id, :days_to_ship_id, :shopping_charges_id, :status_id
   end
 
-  validates :price, format: { with: /\A[0-9]+\z/ }, length: { maximum: 299, minimum: 10000000 }
+  validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { less_than: 10000000, greater_than: 299 }
 
 end
